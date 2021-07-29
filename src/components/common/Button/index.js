@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 
+import { TextStyleVariantsMap } from '../../foundation/Text';
+
 const GhostButton = css`
   background: transparent;
   color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
@@ -19,6 +21,8 @@ export const Button = styled.button`
   opacity: 1;
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: opacity ${({ theme }) => theme.transition};
+
+  ${TextStyleVariantsMap.smallestException}
 
   ${(props) => (props.ghost ? GhostButton : DefaultButton)}
 

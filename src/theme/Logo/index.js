@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 export function Logo() {
   return (
     <svg
-      width="131"
+      width="100"
       height="32"
       viewBox="0 0 131 32"
       fill="none"

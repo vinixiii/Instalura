@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TextStyleVariantsMap } from '../../foundation/Text';
 
 const FooterWrapper = styled.footer`
   padding: 14px;
@@ -9,6 +10,9 @@ const FooterWrapper = styled.footer`
   border-radius: 4px;
   padding-right: 28px;
   padding-left: 28px;
+
+  ${TextStyleVariantsMap.paragraph2}
+
   img {
     width: 58px;
     margin-right: 23px;
