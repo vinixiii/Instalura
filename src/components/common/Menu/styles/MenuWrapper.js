@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { breakpointsMediaQuerie } from '../../../../theme/utils/breakpointsMediaQuerie';
+import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 export const MenuWrapper = styled.nav`
   font-family: 'Rubik', sans-serif;
@@ -9,12 +11,42 @@ export const MenuWrapper = styled.nav`
   margin-top: 18px;
   padding-left: 28px;
   padding-right: 28px;
+
+  ${breakpointsMediaQuerie({
+    md: css`
+      justify-content: flex-start;
+      margin-top: 32px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      padding: 0 16px;
+      max-width: 768px;
+    `,
+    lg: css`
+      max-width: 1160px;
+    `,
+    xl: css`
+      max-width: 1222px;
+    `,
+  })}
 `;
 
 MenuWrapper.LeftSide = styled.div`
   padding: 0;
   margin: 0;
-  order: 1; //Ordem que o elemento aparece na tela
+  order: 1;
+  ${breakpointsMediaQuerie({
+    md: css`
+      width: 131px;
+      height: 32px;
+    `,
+  })}
+  ${breakpointsMediaQuerie({
+    md: css`
+      order: initial;
+      padding-right: 16px;
+    `,
+  })}
 `;
 
 MenuWrapper.Central = styled.ul`
@@ -31,7 +63,7 @@ MenuWrapper.Central = styled.ul`
   border-bottom: 1px solid #88989e;
   padding: 12px;
 
-  /* ${breakpointsMedia({
+  ${breakpointsMediaQuerie({
     md: css`
       max-width: 332px;
       justify-content: space-between;
@@ -42,24 +74,21 @@ MenuWrapper.Central = styled.ul`
       padding-top: 0;
       padding-bottom: 0;
     `,
-  })} */
-
+  })}
   a {
     text-align: center;
     display: block;
     text-decoration: none;
     color: #88989e;
     transition: 200ms ease-in-out;
-
-    /* ${breakpointsMedia({
+    ${breakpointsMediaQuerie({
       xs: css`
-        ${TextStyleVariants.smallestException}
+        ${TextStyleVariantsMap.smallestException}
       `,
       md: css`
-        ${TextStyleVariants.paragraph1}
+        ${TextStyleVariantsMap.paragraph1}
       `,
-    })} */
-
+    })}
     &:hover,
     &:focus {
       font-weight: 500;
@@ -75,9 +104,9 @@ MenuWrapper.RightSide = styled.div`
   flex: 1;
   order: 2;
   justify-content: flex-end;
-  /* ${breakpointsMedia({
+  ${breakpointsMediaQuerie({
     md: css`
       order: initial;
     `,
-  })} */
+  })}
 `;

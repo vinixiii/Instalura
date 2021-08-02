@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 
 import { TextStyleVariantsMap } from '../../foundation/Text';
+import { breakpointsMediaQuerie } from '../../../theme/utils/breakpointsMediaQuerie';
 
 const GhostButton = css`
   background: transparent;
@@ -25,6 +26,15 @@ export const Button = styled.button`
   ${TextStyleVariantsMap.smallestException}
 
   ${(props) => (props.ghost ? GhostButton : DefaultButton)}
+
+  ${breakpointsMediaQuerie({
+    xs: css`
+      ${TextStyleVariantsMap.smallestException}
+    `,
+    md: css`
+      ${TextStyleVariantsMap.paragraph1}
+    `,
+  })}
 
   &:hover,
   &:focus {

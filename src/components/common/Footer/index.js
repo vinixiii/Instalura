@@ -39,7 +39,7 @@ export default function Footer(props) {
         />
       </a>
       <p>
-        Orgulhosamente criado por
+        Feito com &#128149; por
         <a href="https://www.github.com/vinixiii" target="_blank">
           <span> Vinícius Figueiroa </span>
         </a>
