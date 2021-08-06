@@ -3,6 +3,7 @@ import get from 'lodash/get';
 
 import { TextStyleVariantsMap } from '../../foundation/Text';
 import { breakpointsMediaQuerie } from '../../../theme/utils/breakpointsMediaQuerie';
+import { propToStyle } from '../../../theme/utils/propToStyle';
 
 const GhostButton = css`
   background: transparent;
@@ -35,6 +36,9 @@ export const Button = styled.button`
       ${TextStyleVariantsMap.paragraph1}
     `,
   })}
+
+  ${propToStyle('margin')}
+  ${propToStyle('display')}
 
   &:hover,
   &:focus {
