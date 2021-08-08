@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { breakpointsMediaQuerie } from '../../../../theme/utils/breakpointsMediaQuerie';
+import { propToStyle } from '../../../../theme/utils/propToStyle';
 
 const Container = styled.div`
   width: 100%;
@@ -24,6 +25,8 @@ const Container = styled.div`
       max-width: 1222px;
     `,
   })}
+
+  ${propToStyle('marginTop')}
 `;
 
 const Row = styled.div`
@@ -129,6 +132,12 @@ const Col = styled.div`
         : '',
     });
   }}
+
+  ${propToStyle('display')}
+  ${propToStyle('flexDirection')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('marginBottom')}
 `;
 
 export const Grid = {
