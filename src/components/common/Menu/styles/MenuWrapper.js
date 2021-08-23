@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import styled, { css } from 'styled-components';
 import { breakpointsMediaQuerie } from '../../../../theme/utils/breakpointsMediaQuerie';
 import { TextStyleVariantsMap } from '../../../foundation/Text';
@@ -81,6 +82,7 @@ MenuWrapper.Central = styled.ul`
     text-decoration: none;
     color: #88989e;
     transition: 200ms ease-in-out;
+
     ${breakpointsMediaQuerie({
       xs: css`
         ${TextStyleVariantsMap.smallestException}
@@ -89,6 +91,7 @@ MenuWrapper.Central = styled.ul`
         ${TextStyleVariantsMap.paragraph1}
       `,
     })}
+
     &:hover,
     &:focus {
       font-weight: 500;

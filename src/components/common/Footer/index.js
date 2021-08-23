@@ -40,11 +40,15 @@ export default function Footer(props) {
       </a>
       <p>
         Feito com &#128149; por
-        <a href="https://www.github.com/vinixiii" target="_blank">
+        <a
+          href="https://www.github.com/vinixiii"
+          target="_blank"
+          rel="noreferrer"
+        >
           <span> Vinícius Figueiroa </span>
         </a>
         durante o
-        <a href="https://www.alura.com.br/" target="_blank">
+        <a href="https://www.alura.com.br/" target="_blank" rel="noreferrer">
           <span> Bootcamp Alura JAM Stack</span>
         </a>
       </p>

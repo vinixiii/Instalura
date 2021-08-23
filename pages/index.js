@@ -1,3 +1,4 @@
+import React from 'react';
 import Menu from '../src/components/common/Menu';
 import Footer from '../src/components/common/Footer';
 import Text from '../src/components/foundation/Text';
@@ -27,7 +28,7 @@ export default function Home() {
       >
         <Grid.Row>
           <Grid.Col
-            //Deslocando uma coluna
+            // Deslocando uma coluna
             offset={{ xs: 0, md: 1 }}
             value={{ xs: 12, md: 5 }}
             display="flex"
@@ -79,6 +80,7 @@ export default function Home() {
             <img
               style={{ display: 'block', margin: 'auto' }}
               src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
+              alt="Imagem de um celular exibindo o perfil do N.Cage"
             />
           </Grid.Col>
         </Grid.Row>

@@ -1,6 +1,8 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable indent */
 import React from 'react';
 import styled, { css } from 'styled-components';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { propToStyle } from '../../../theme/utils/propToStyle';
 
 export const TextStyleVariantsMap = {
@@ -33,8 +35,10 @@ const TextBase = styled.span`
   ${propToStyle('textAlign')}
 `;
 
+// eslint-disable-next-line object-curly-newline
 export default function Text({ tag, variant, children, ...props }) {
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <TextBase as={tag} variant={variant} {...props}>
       {children}
     </TextBase>

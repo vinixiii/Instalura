@@ -97,7 +97,7 @@ const Col = styled.div`
     });
   }}
 
-  ${function ({ offset }) {
+  ${({ offset }) => {
     if (typeof offset === 'number') {
       return css`
         margin-left: ${(100 * offset) / 12}%;

@@ -3,7 +3,8 @@ import { breakpointsMediaQuerie } from './breakpointsMediaQuerie';
 export function propToStyle(propName) {
   // Retorna uma função que recebe as props do styled-components
   // e essa função retorna o valor da chave 'textAlign' no objeto 'props'
-  return function (props) {
+  return (props) => {
+    // eslint-disable-next-line react/destructuring-assignment
     const propValue = props[propName];
 
     if (typeof propValue === 'string') {
@@ -31,5 +32,7 @@ export function propToStyle(propName) {
         },
       });
     }
+
+    return null;
   };
 }

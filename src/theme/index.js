@@ -42,16 +42,16 @@ const colors = {
 };
 
 export default {
-  colors, //É o mesmo que -> colors: colors
+  colors, // É o mesmo que -> colors: colors
   typographyVariants,
   fontFamily: "'Rubik', sans-serif",
   borderRadius: '8px',
   transition: '200ms ease-in-out',
   breakpoints: {
-    xs: 0, //extra small
-    sm: 480, //small
-    md: 768, //medium
-    lg: 992, //large
-    xl: 1200, //extra large
+    xs: 0, // extra small
+    sm: 480, // small
+    md: 768, // medium
+    lg: 992, // large
+    xl: 1200, // extra large
   },
 };
