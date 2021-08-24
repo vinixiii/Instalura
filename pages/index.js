@@ -6,9 +6,10 @@ import { Button } from '../src/components/common/Button';
 import { Grid } from '../src/components/foundation/layout/Grid';
 import { Box } from '../src/components/foundation/layout/Box';
 import Modal from '../src/components/common/Modal';
+import RegisterForm from '../src/components/patterns/RegisterForm';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   return (
     <Box
@@ -22,12 +23,7 @@ export default function Home() {
       backgroundPosition="bottom right"
     >
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        {(propsDoModal) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <Box backgroundColor="white" {...propsDoModal}>
-            Sou um modal
-          </Box>
-        )}
+        {(propsDoModal) => <RegisterForm propsDoModal={propsDoModal} />}
       </Modal>
 
       <Menu />

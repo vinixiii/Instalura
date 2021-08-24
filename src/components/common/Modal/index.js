@@ -1,13 +1,13 @@
 /* eslint-disable comma-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-end;
   background: rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 0;
@@ -31,8 +31,20 @@ const ModalWrapper = styled.div`
       pointer-events: none;
     `;
   }}
+
+  svg {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    cursor: pointer;
+  }
 `;
 
+const LockScroll = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
 export default function Modal({ isOpen, onClose, children }) {
   return (
     <ModalWrapper
@@ -45,13 +57,14 @@ export default function Modal({ isOpen, onClose, children }) {
         if (!isSafeArea) onClose();
       }}
     >
+      {isOpen && <LockScroll />}
       <motion.div
         variants={{
           open: {
             x: 0,
           },
           closed: {
-            x: '-100%',
+            x: '100%',
           },
         }}
         animate={isOpen ? 'open' : 'closed'}
