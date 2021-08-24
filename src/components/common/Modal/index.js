@@ -30,14 +30,12 @@ const ModalWrapper = styled.div`
       opacity: 0;
       pointer-events: none;
     `;
-  }}
-
-  svg {
+  }}/* svg {
     position: absolute;
     top: 50px;
     right: 50px;
     cursor: pointer;
-  }
+  } */
 `;
 
 const LockScroll = createGlobalStyle`

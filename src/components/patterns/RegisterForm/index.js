@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable operator-linebreak */
 import React, { useState } from 'react';
@@ -8,6 +9,8 @@ import { Box } from '../../foundation/layout/Box';
 import { Grid } from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
 import errorAnimation from '../animations/error.json';
+import successAnimation from '../animations/success.json';
+import loadingAnimation from '../animations/loading.json';
 
 const formStates = {
   DEFAULT: 'DEFAULT',
@@ -41,6 +44,7 @@ function FormContent() {
     event.preventDefault();
 
     setIsFormSubmited(true);
+    setSubmissionStatus(formStates.LOADING);
 
     const userDTO = {
       name: userInfo.name,
@@ -111,26 +115,46 @@ function FormContent() {
         Cadastrar
       </Button>
 
-      {isFormSubmited && submissionStatus === formStates.DONE && (
-        <Box display="flex" justifyContent="center">
+      {isFormSubmited && submissionStatus === formStates.LOADING && (
+        <Box display="flex" justifyContent="center" alignItems="center">
           <Lottie
             width="150px"
             height="150px"
             className="lottie-container basic"
             config={{
-              animationData: errorAnimation,
-              loop: false,
+              animationData: loadingAnimation,
+              loop: true,
               autoplay: true,
             }}
           />
         </Box>
-        // https://lottiefiles.com/43920-success-alert-icon
+        // https://lottiefiles.com/66650-loading-circle
       )}
-      {isFormSubmited && submissionStatus === formStates.ERROR && (
-        <Box display="flex" justifyContent="center">
+
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box display="flex" justifyContent="center" alignItems="center">
           <Lottie
             width="150px"
             height="150px"
+            className="lottie-container basic"
+            config={{
+              animationData: successAnimation,
+              loop: false,
+              autoplay: true,
+            }}
+          />
+          <Text variant="paragraph2" tag="p" color="tertiary.light">
+            Usuário cadastrado com sucesso :)
+          </Text>
+        </Box>
+        // https://lottiefiles.com/50465-done
+      )}
+
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Lottie
+            width="100px"
+            height="100px"
             className="lottie-container basic"
             config={{
               animationData: errorAnimation,
@@ -138,8 +162,16 @@ function FormContent() {
               autoplay: true,
             }}
           />
+          <Text
+            variant="paragraph2"
+            tag="p"
+            color="tertiary.light"
+            marginBottom="32px"
+          >
+            Não foi possível cadastrar o usuário :(
+          </Text>
         </Box>
-        // https://lottiefiles.com/43920-success-alert-icon
+        // https://lottiefiles.com/14331-error
       )}
     </form>
   );
