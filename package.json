@@ -3,7 +3,10 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "eslint --ignore-path .gitignore .",
+    "custom-script": "node ./test-script.js"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
@@ -25,7 +28,8 @@
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "shelljs": "^0.8.4"
   },
   "license": "MIT"
 }
