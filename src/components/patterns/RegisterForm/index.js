@@ -1,18 +1,32 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable operator-linebreak */
 import React, { useState } from 'react';
+import { Lottie } from '@crello/react-lottie';
 import { Button } from '../../common/Button';
 import TextField from '../../forms/TextField';
 import { Box } from '../../foundation/layout/Box';
 import { Grid } from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
+import errorAnimation from '../animations/error.json';
+
+const formStates = {
+  DEFAULT: 'DEFAULT',
+  LOADING: 'LOADING',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+};
 
 function FormContent() {
   const [userInfo, setUserInfo] = useState({
-    email: '',
+    name: '',
     username: '',
   });
+
   const isValidForm =
-    userInfo.email.length === 0 || userInfo.username.length === 0;
+    userInfo.name.length === 0 || userInfo.username.length === 0;
+
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
 
   function handleChangeFieldValue(event) {
     const fieldName = event.target.getAttribute('name');
@@ -23,8 +37,42 @@ function FormContent() {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    setIsFormSubmited(true);
+
+    const userDTO = {
+      name: userInfo.name,
+      username: userInfo.username,
+    };
+
+    fetch('https://instalura-api.vercel.app/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userDTO),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        throw new Error('Não foi possível cadastrar o usuário');
+      })
+      .then((convertedResponse) => {
+        setSubmissionStatus(formStates.DONE);
+        console.log(convertedResponse);
+      })
+      .catch((error) => {
+        setSubmissionStatus(formStates.ERROR);
+        console.error(error);
+      });
+  }
+
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
+    <form onSubmit={handleSubmit}>
       <Text variant="title" tag="h1" color="tertiary.main">
         Pronto para saber da vida dos outros?
       </Text>
@@ -39,9 +87,9 @@ function FormContent() {
       </Text>
       <div>
         <TextField
-          placeholder="E-mail"
-          name="email"
-          value={userInfo.email}
+          placeholder="Nome"
+          name="name"
+          value={userInfo.name}
           onChange={handleChangeFieldValue}
         />
       </div>
@@ -62,6 +110,37 @@ function FormContent() {
       >
         Cadastrar
       </Button>
+
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box display="flex" justifyContent="center">
+          <Lottie
+            width="150px"
+            height="150px"
+            className="lottie-container basic"
+            config={{
+              animationData: errorAnimation,
+              loop: false,
+              autoplay: true,
+            }}
+          />
+        </Box>
+        // https://lottiefiles.com/43920-success-alert-icon
+      )}
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+        <Box display="flex" justifyContent="center">
+          <Lottie
+            width="150px"
+            height="150px"
+            className="lottie-container basic"
+            config={{
+              animationData: errorAnimation,
+              loop: false,
+              autoplay: true,
+            }}
+          />
+        </Box>
+        // https://lottiefiles.com/43920-success-alert-icon
+      )}
     </form>
   );
 }
