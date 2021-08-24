@@ -3,6 +3,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import { propToStyle } from '../../../theme/utils/propToStyle';
 
 export const TextStyleVariantsMap = {
@@ -31,8 +32,9 @@ export const TextStyleVariantsMap = {
 };
 
 const TextBase = styled.span`
-  ${(props) => TextStyleVariantsMap[props.variant]}
-  ${propToStyle('textAlign')}
+  ${(props) => TextStyleVariantsMap[props.variant]};
+  color: ${(props) => get(props.theme, `colors.${props.color}.color`)};
+  ${propToStyle('textAlign')};
 `;
 
 // eslint-disable-next-line object-curly-newline
@@ -48,10 +50,11 @@ export default function Text({ tag, variant, children, ...props }) {
 Text.propTypes = {
   tag: PropTypes.string,
   variant: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };

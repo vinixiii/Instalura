@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 
@@ -44,4 +46,14 @@ export const Button = styled.button`
   &:focus {
     opacity: 0.5;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+  }
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `};
 `;
