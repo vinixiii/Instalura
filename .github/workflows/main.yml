@@ -30,7 +30,7 @@ jobs:
       - name: Check node version
         run: node -v
         
-      - name: Install dependecies
+      - name: Install dependencies
         run: yarn
         
       - name: Run lint
