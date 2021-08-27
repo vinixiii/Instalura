@@ -9,7 +9,7 @@ import Modal from '../src/components/common/Modal';
 import RegisterForm from '../src/components/patterns/RegisterForm';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Box
@@ -26,7 +26,7 @@ export default function Home() {
         {(propsDoModal) => <RegisterForm propsDoModal={propsDoModal} />}
       </Modal>
 
-      <Menu />
+      <Menu onRegisterClick={() => setIsModalOpen(true)} />
 
       <Grid.Container
         marginTop={{
