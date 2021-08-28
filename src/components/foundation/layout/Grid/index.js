@@ -39,6 +39,9 @@ const Row = styled.div`
   ${propToStyle('marginRight')}
   ${propToStyle('marginLeft')}
   ${propToStyle('justifyContent')}
+  ${propToStyle('marginTop')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('flexDirection')}
 `;
 
 const Col = styled.div`
@@ -142,7 +145,9 @@ const Col = styled.div`
   ${propToStyle('alignItems')}
   ${propToStyle('justifyContent')}
   ${propToStyle('flexDirection')}
-  ${propToStyle('paddingRight')} /* ${propToStyle('marginBottom')} */
+  ${propToStyle('paddingRight')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('order')}
 `;
 
 export const Grid = {
