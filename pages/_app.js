@@ -5,12 +5,12 @@ import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../src/theme/GlobalStyle';
 import theme from '../src/theme';
+import { SEO } from '../src/components/common/SEO';
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Instalura</title>
         <link
           rel="icon"
           type="image/png"
@@ -38,6 +38,8 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
+
+      <SEO headTitle="Home" />
 
       <ThemeProvider theme={theme}>
         <GlobalStyle />
