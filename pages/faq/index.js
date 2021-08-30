@@ -15,8 +15,6 @@ export async function getStaticProps() {
     return response.data;
   });
 
-  console.log('faqCategories', faqCategories);
-
   return {
     props: {
       faqCategories,

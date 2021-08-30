@@ -27,6 +27,7 @@ const Container = styled.div`
   })}
 
   ${propToStyle('marginTop')}
+  ${propToStyle('marginBottom')}
 `;
 
 const Row = styled.div`
