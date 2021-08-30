@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import Text from '../src/components/foundation/Text';
 import { Button } from '../src/components/common/Button';
 import { Grid } from '../src/components/foundation/layout/Grid';
-import WebsitePageWrapper, {
-  WebsitePageWrapperContext,
-} from '../src/components/wrappers/WebsitePage';
+import { WebsitePageWrapperContext } from '../src/components/wrappers/WebsitePage';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
 function HomeScreen() {
   const { toggleRegisterModal } = useContext(WebsitePageWrapperContext);
@@ -74,24 +73,15 @@ function HomeScreen() {
   );
 }
 
-export default function Home() {
-  return (
-    //   flexWrap="wrap"
-    //   justifyContent="space-between"
-    //   backgroundImage="url(/images/bubbles.svg)"
-    //   backgroundRepeat="no-repeat"
-    //   backgroundPosition="bottom right"
-    <WebsitePageWrapper
-      seoProps={{ headTitle: 'Home' }}
-      pageBoxProps={{
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        backgroundImage: 'url(/images/bubbles.svg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'bottom right',
-      }}
-    >
-      <HomeScreen />
-    </WebsitePageWrapper>
-  );
-}
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: { headTitle: 'Home' },
+    pageBoxProps: {
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});

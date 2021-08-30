@@ -5,27 +5,10 @@ import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
 import { Box } from '../../foundation/layout/Box';
 import { Grid } from '../../foundation/layout/Grid';
-import Menu from '../../common/Menu';
-import Footer from '../../common/Footer';
-import Modal from '../../common/Modal';
-import FormCadastro from '../../patterns/RegisterForm';
 
 export function FAQScreen({ faqCategories }) {
-  const [isModalOpen, setModalState] = React.useState(false);
-
   return (
     <Box display="flex" flexDirection="column" flex="1">
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
-        }}
-      >
-        {(propsDoModal) => <FormCadastro propsDoModal={propsDoModal} />}
-      </Modal>
-
-      <Menu onRegisterClick={() => setModalState(true)} />
-
       <Grid.Container style={{ flex: 1 }}>
         <Grid.Row
           marginTop={{ xs: '32px', md: '100px' }}
@@ -43,7 +26,13 @@ export function FAQScreen({ faqCategories }) {
             </Text>
           </Grid.Col>
         </Grid.Row>
-        <Grid.Row alignItems="flex-start" justifyContent="center" flex="1">
+        <Grid.Row
+          alignItems="flex-start"
+          justifyContent="center"
+          flex="1"
+          marginTop={{ xs: '32px', md: '100px' }}
+          marginBottom={{ xs: '32px', md: '100px' }}
+        >
           {faqCategories &&
             faqCategories.map((category) => (
               <Grid.Col value={{ xs: 12, md: 3 }} flex={1} key={category.title}>
@@ -76,8 +65,6 @@ export function FAQScreen({ faqCategories }) {
             ))}
         </Grid.Row>
       </Grid.Container>
-
-      <Footer />
     </Box>
   );
 }

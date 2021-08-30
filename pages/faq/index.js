@@ -1,11 +1,17 @@
 /* eslint-disable comma-dangle */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FAQScreen } from '../../src/components/screens/FaqScreen';
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
-export default function Faq({ faqCategories }) {
+function FAQPage({ faqCategories }) {
   return <FAQScreen faqCategories={faqCategories} />;
 }
+
+export default websitePageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: { headTitle: 'Perguntas frequentes' },
+  },
+});
 
 export async function getStaticProps() {
   const faqCategories = await fetch(
@@ -22,18 +28,20 @@ export async function getStaticProps() {
   };
 }
 
-Faq.propTypes = {
-  faqCategories: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      slug: PropTypes.string,
-      questions: PropTypes.arrayOf(
-        PropTypes.shape({
-          title: PropTypes.string,
-          slug: PropTypes.string,
-          description: PropTypes.string,
-        })
-      ),
-    })
-  ).isRequired,
-};
+FAQPage.propTypes = FAQScreen.propTypes;
+
+// Faq.propTypes = {
+//   faqCategories: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       title: PropTypes.string,
+//       slug: PropTypes.string,
+//       questions: PropTypes.arrayOf(
+//         PropTypes.shape({
+//           title: PropTypes.string,
+//           slug: PropTypes.string,
+//           description: PropTypes.string,
+//         })
+//       ),
+//     })
+//   ).isRequired,
+// };
