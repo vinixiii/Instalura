@@ -2,10 +2,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../src/theme/GlobalStyle';
-import theme from '../src/theme';
-import { SEO } from '../src/components/common/SEO';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -39,17 +35,7 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
 
-      <SEO headTitle="Home" />
-
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </>
   );
 }
-
-// App.propTypes = {
-//   Component: PropTypes.node.isRequired,
-//   pageProps: PropTypes.node.isRequired,
-// };
