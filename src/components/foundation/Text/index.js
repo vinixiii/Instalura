@@ -8,6 +8,21 @@ import { propToStyle } from '../../../theme/utils/propToStyle';
 import { Link } from '../../common/Link';
 
 export const TextStyleVariantsMap = {
+  title: css`
+    font-size: ${({ theme }) => theme.typographyVariants.title.fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants.title.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.title.lineHeight};
+  `,
+  titleXS: css`
+    font-size: ${({ theme }) => theme.typographyVariants.titleXS.fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants.titleXS.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.titleXS.lineHeight};
+  `,
+  subTitle: css`
+    font-size: ${({ theme }) => theme.typographyVariants.subTitle.fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants.subTitle.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.subTitle.lineHeight};
+  `,
   paragraph1: css`
     font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
     font-weight: ${({ theme }) =>
@@ -33,7 +48,7 @@ export const TextStyleVariantsMap = {
 };
 
 const TextBase = styled.span`
-  ${(props) => TextStyleVariantsMap[props.variant]};
+  ${({ variant }) => TextStyleVariantsMap[variant]}
   color: ${(props) => get(props.theme, `colors.${props.color}.color`)};
   ${propToStyle('textAlign')};
 `;
