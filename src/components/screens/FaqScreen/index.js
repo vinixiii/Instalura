@@ -9,12 +9,8 @@ import { Grid } from '../../foundation/layout/Grid';
 export function FAQScreen({ faqCategories }) {
   return (
     <Box display="flex" flexDirection="column" flex="1">
-      <Grid.Container style={{ flex: 1 }}>
-        <Grid.Row
-          marginTop={{ xs: '32px', md: '100px' }}
-          marginBottom={{ xs: '32px', md: '100px' }}
-          justifyContent="center"
-        >
+      <Grid.Container>
+        <Grid.Row marginTop="32px" marginBottom="32px" justifyContent="center">
           <Grid.Col value={{ xs: 12, md: 12 }} flex={1}>
             <Text
               variant="title"
@@ -30,8 +26,8 @@ export function FAQScreen({ faqCategories }) {
           alignItems="flex-start"
           justifyContent="center"
           flex="1"
-          marginTop={{ xs: '32px', md: '100px' }}
-          marginBottom={{ xs: '32px', md: '100px' }}
+          marginTop="32px"
+          marginBottom="32px"
         >
           {faqCategories &&
             faqCategories.map((category) => (

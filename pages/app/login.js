@@ -1,11 +1,12 @@
 import React from 'react';
+import { Box } from '../../src/components/foundation/layout/Box';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
 function LoginScreen() {
   return (
-    <div>
+    <Box display="flex" flex="1" flexDirection="column">
       <h1>Login</h1>
-    </div>
+    </Box>
   );
 }
 
