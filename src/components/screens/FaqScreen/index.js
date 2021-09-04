@@ -9,8 +9,12 @@ import { Grid } from '../../foundation/layout/Grid';
 export function FAQScreen({ faqCategories }) {
   return (
     <Box display="flex" flexDirection="column" flex="1">
-      <Grid.Container>
-        <Grid.Row marginTop="32px" marginBottom="32px" justifyContent="center">
+      <Grid.Container marginTop="auto" marginBottom="auto">
+        <Grid.Row
+          marginTop={{ xs: 32, md: 32 }}
+          marginBottom={{ xs: 32, md: 100 }}
+          justifyContent="center"
+        >
           <Grid.Col value={{ xs: 12, md: 12 }} flex={1}>
             <Text
               variant="title"
