@@ -9,6 +9,7 @@ const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
   max-width: initial;
+
   ${breakpointsMediaQuerie({
     sm: css`
       max-width: 576px;
@@ -28,6 +29,9 @@ const Container = styled.div`
 
   ${propToStyle('marginTop')}
   ${propToStyle('marginBottom')}
+  ${propToStyle('display')}
+  ${propToStyle('flex')}
+  ${propToStyle('alignItems')}
 `;
 
 const Row = styled.div`
