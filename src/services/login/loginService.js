@@ -1,6 +1,9 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable indent */
 /* eslint-disable arrow-body-style */
 /* eslint-disable comma-dangle */
 import { setCookie, destroyCookie } from 'nookies';
+import { isStagingEnv } from '../../infra/env/isStagingEnv';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -16,22 +19,25 @@ async function HttpClient(url, { headers, body, ...options }) {
   });
 }
 
+const BASE_URL = isStagingEnv
+  ? // Back-end de Dev
+    'https://instalura-api-git-master-omariosouto.vercel.app'
+  : // Back-end de Prod
+    'https://instalura-api-omariosouto.vercel.app';
+
 export const loginService = {
   async login({ username, password }) {
     // É preciso retornar o resultado do fetch para que seja possível
     // continuar a cadeia de promises no .then lá na página de login
-    return HttpClient(
-      'https://instalura-api-omariosouto.vercel.app/api/login',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: {
-          // Esse é o nosso DTO
-          username, // 'vinixiii',
-          password, // 'senhasegura',
-        },
-      }
-    ).then((convertedResponse) => {
+    return HttpClient(`${BASE_URL}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: {
+        // Esse é o nosso DTO
+        username, // 'vinixiii',
+        password, // 'senhasegura',
+      },
+    }).then((convertedResponse) => {
       // console.log(data);
       // Salvar o token
       const { token } = convertedResponse.data;
