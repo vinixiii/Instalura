@@ -10,8 +10,8 @@ export function LoginForm() {
   const router = useRouter();
 
   const initialValues = {
-    username: 'vinixiii',
-    password: 'senhasegura',
+    username: '',
+    password: '',
   };
 
   const form = useForm({

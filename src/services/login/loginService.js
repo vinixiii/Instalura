@@ -1,5 +1,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable comma-dangle */
+import { setCookie, destroyCookie } from 'nookies';
+
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
     headers: { ...headers, 'Content-Type': 'application/json' },
@@ -29,9 +31,23 @@ export const loginService = {
           password, // 'senhasegura',
         },
       }
-    ).then((data) => {
+    ).then((convertedResponse) => {
       // console.log(data);
-      return data;
+      // Salvar o token
+      const { token } = convertedResponse.data;
+      const DAY_IN_SECONDS = 86400;
+
+      setCookie(null, 'APP_TOKEN', token, {
+        // O cookie poder ser acessado a partir da página raiz da aplicação
+        path: '/',
+        // Tempo que o cookie fica armazenado
+        maxAge: DAY_IN_SECONDS * 7,
+      });
+
+      return token;
     });
+  },
+  logout() {
+    destroyCookie(null, 'APP_TOKEN');
   },
 };
