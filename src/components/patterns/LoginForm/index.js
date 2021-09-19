@@ -29,12 +29,17 @@ export function LoginForm() {
   const form = useForm({
     initialValues,
     onSubmit: (values) => {
+      form.setIsFormDisabled(true);
       loginService
         .login({
           username: values.username,
           password: values.password,
         })
-        .then(() => router.push('/app/profile'));
+        .then(() => router.push('/app/profile'))
+        .catch((error) => {
+          console.error(error);
+          form.setIsFormDisabled(false);
+        });
     },
     async validateSchema(values) {
       return loginSchema.validate(values, {
