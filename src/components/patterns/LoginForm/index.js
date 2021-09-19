@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { useForm } from '../../../infra/hooks/forms/useForm';
@@ -18,7 +19,7 @@ const loginSchema = yup.object().shape({
     .min(8, 'Sua senha deve conter ao menos 8 caracteres'),
 });
 
-export function LoginForm() {
+export function LoginForm({ onSubmit }) {
   const router = useRouter();
 
   const initialValues = {
@@ -50,7 +51,7 @@ export function LoginForm() {
   });
 
   return (
-    <form id="loginForm" onSubmit={form.handleSubmit}>
+    <form id="loginForm" onSubmit={onSubmit || form.handleSubmit}>
       <TextField
         placeholder="Usuário"
         name="username"
@@ -86,3 +87,11 @@ export function LoginForm() {
     </form>
   );
 }
+
+LoginForm.defaultProps = {
+  onSubmit: () => {},
+};
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func,
+};

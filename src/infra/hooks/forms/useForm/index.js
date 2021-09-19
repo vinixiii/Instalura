@@ -7,27 +7,30 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
   const [errors, setErrors] = useState({});
   const [touchedFields, setTouchedFields] = useState({});
 
+  async function validateValues(currentValues) {
+    try {
+      await validateSchema(currentValues);
+      setIsFormDisabled(false);
+      setErrors({});
+    } catch (err) {
+      const formatedErrors = err.inner.reduce(
+        (errorObjectAcc, currentError) => {
+          const fieldName = currentError.path;
+          const errorMessage = currentError.message;
+          return {
+            ...errorObjectAcc,
+            [fieldName]: errorMessage,
+          };
+        },
+        {}
+      );
+      setErrors(formatedErrors);
+      setIsFormDisabled(true);
+    }
+  }
+
   useEffect(() => {
-    validateSchema(values)
-      .then(() => {
-        setIsFormDisabled(false);
-        setErrors({});
-      })
-      .catch((err) => {
-        const formatedErrors = err.inner.reduce(
-          (errorObjectAcc, currentError) => {
-            const fieldName = currentError.path;
-            const errorMessage = currentError.message;
-            return {
-              ...errorObjectAcc,
-              [fieldName]: errorMessage,
-            };
-          },
-          {}
-        );
-        setErrors(formatedErrors);
-        setIsFormDisabled(true);
-      });
+    validateValues(values);
   }, [values]);
 
   return {
