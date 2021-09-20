@@ -89,7 +89,7 @@ export function LoginForm({ onSubmit }) {
 }
 
 LoginForm.defaultProps = {
-  onSubmit: () => {},
+  onSubmit: undefined,
 };
 
 LoginForm.propTypes = {
