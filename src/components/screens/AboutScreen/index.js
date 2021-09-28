@@ -20,9 +20,12 @@ export function AboutScreen({ messages }) {
             offset={{ md: 2 }}
             flex={1}
           >
-            <Text variant="title" tag="h2" color="tertiary.main">
-              {messages.aboutpage.pageTitle}
-            </Text>
+            <Text
+              variant="title"
+              tag="h2"
+              color="tertiary.main"
+              cmsKey="aboutpage.pageTitle"
+            />
 
             <Box
               dangerouslySetInnerHTML={{

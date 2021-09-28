@@ -1,11 +1,12 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable indent */
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { propToStyle } from '../../../theme/utils/propToStyle';
 import { Link } from '../../common/Link';
+import { WebsitePageWrapperContext } from '../../wrappers/WebsitePage/context';
 
 export const TextStyleVariantsMap = {
   title: css`
@@ -54,12 +55,25 @@ const TextBase = styled.span`
 `;
 
 // eslint-disable-next-line object-curly-newline
-export default function Text({ tag, variant, children, href, ...props }) {
+export default function Text({
+  tag,
+  variant,
+  children,
+  href,
+  cmsKey,
+  ...props
+}) {
+  const websitePageWrapperContext = useContext(WebsitePageWrapperContext);
+
+  const componentContent = cmsKey
+    ? websitePageWrapperContext.getCMSContent(cmsKey)
+    : children;
+
   if (href) {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
       <TextBase as={Link} href={href} variant={variant} {...props}>
-        {children}
+        {componentContent}
       </TextBase>
     );
   }
@@ -67,7 +81,7 @@ export default function Text({ tag, variant, children, href, ...props }) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <TextBase as={tag} variant={variant} {...props}>
-      {children}
+      {componentContent}
     </TextBase>
   );
 }
@@ -77,6 +91,7 @@ Text.propTypes = {
   variant: PropTypes.string,
   children: PropTypes.node,
   href: PropTypes.string,
+  cmsKey: PropTypes.string,
 };
 
 Text.defaultProps = {
@@ -84,4 +99,5 @@ Text.defaultProps = {
   variant: 'paragraph1',
   children: null,
   href: '',
+  cmsKey: '',
 };

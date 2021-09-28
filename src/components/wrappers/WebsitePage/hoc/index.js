@@ -15,7 +15,11 @@ export default function websitePageHOC(
     // Providers gerais da aplicação, como por exemplo o ThemeProvider
     <WebsiteGlobalProvider>
       {/* Componente que possui elementos que são comuns em toda a página */}
-      <WebsitePageWrapper {...pageWrapperProps} {...props.pageWrapperProps}>
+      <WebsitePageWrapper
+        {...pageWrapperProps}
+        {...props.pageWrapperProps}
+        messages={props.messages}
+      >
         <PageComponent {...props} />
       </WebsitePageWrapper>
     </WebsiteGlobalProvider>
