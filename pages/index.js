@@ -12,7 +12,10 @@ function HomeScreen() {
   return (
     <Box display="flex" flex="1" flexDirection="column">
       <Grid.Container marginTop="auto" marginBottom="auto">
-        <Grid.Row>
+        <Grid.Row
+          marginTop={{ xs: 32, md: 120 }}
+          marginBottom={{ xs: 32, md: 120 }}
+        >
           <Grid.Col
             // Deslocando uma coluna
             offset={{ xs: 0, md: 1 }}

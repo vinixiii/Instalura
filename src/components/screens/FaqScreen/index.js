@@ -11,8 +11,8 @@ export function FAQScreen({ faqCategories }) {
     <Box display="flex" flexDirection="column" flex="1">
       <Grid.Container marginTop="auto" marginBottom="auto">
         <Grid.Row
-          marginTop={{ xs: 32, md: 32 }}
-          marginBottom={{ xs: 32, md: 100 }}
+          marginTop={{ xs: 32, md: 120 }}
+          marginBottom="32px"
           justifyContent="center"
         >
           <Grid.Col value={{ xs: 12, md: 12 }} flex={1}>
@@ -31,7 +31,7 @@ export function FAQScreen({ faqCategories }) {
           justifyContent="center"
           flex="1"
           marginTop="32px"
-          marginBottom="32px"
+          marginBottom={{ xs: 32, md: 120 }}
         >
           {faqCategories &&
             faqCategories.map((category) => (
