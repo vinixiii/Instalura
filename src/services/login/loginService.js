@@ -52,7 +52,7 @@ export const loginService = {
       return token;
     });
   },
-  async logout(destroyCookieModule = destroyCookie) {
-    destroyCookieModule(null, LOGIN_COOKIE_APP_TOKEN);
+  async logout(context, destroyCookieModule = destroyCookie) {
+    destroyCookieModule(context, LOGIN_COOKIE_APP_TOKEN, { path: '/' });
   },
 };
