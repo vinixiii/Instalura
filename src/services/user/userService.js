@@ -14,8 +14,9 @@ export const userService = {
   // Aqui poderiamos bater numa API GraphQL e retornar
   // todos os dados, ou pegar os dados e estruturar
   async getProfilePage(context) {
+    const url = `${BASE_URL}/api/users/posts`;
+
     try {
-      const url = `${BASE_URL}/api/users/posts`;
       const token = await authService(context).getToken();
 
       const response = await HttpClient(url, {
