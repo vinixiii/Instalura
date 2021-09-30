@@ -39,7 +39,7 @@ describe('loginService', () => {
           // Espera que salva o token nos cookies
           expect(setCookieModule).toHaveBeenCalledWith(
             null,
-            'APP_TOKEN',
+            'LOGIN_COOKIE_APP_TOKEN',
             token,
             {
               // O cookie poder ser acessado a partir da página raiz da aplicação
@@ -75,10 +75,14 @@ describe('loginService', () => {
     describe('when user try to logout and succeed', () => {
       test('remove token', async () => {
         const destroyCookie = jest.fn();
-        await loginService.logout(destroyCookie);
+        await loginService.logout(null, destroyCookie);
 
         // Espera que a função seja chamada com esses parâmetros
-        expect(destroyCookie).toHaveBeenCalledWith(null, 'APP_TOKEN');
+        expect(destroyCookie).toHaveBeenCalledWith(
+          null,
+          'LOGIN_COOKIE_APP_TOKEN',
+          { path: '/' }
+        );
       });
     });
   });

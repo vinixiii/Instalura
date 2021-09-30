@@ -38,7 +38,7 @@ describe('pages/app/login', () => {
         // Intercepta o valor do token da response
         const { token } = intercept.response.body.data;
         // Verificamos se o token foi salvo nos cookies
-        cy.getCookie('APP_TOKEN')
+        cy.getCookie('LOGIN_COOKIE_APP_TOKEN')
           // Verifica se o token existe
           .should('exist')
           // Verifica se o valor do token no cookie é igual
