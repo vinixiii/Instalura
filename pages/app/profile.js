@@ -1,11 +1,13 @@
 import React from 'react';
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 import { authService } from '../../src/services/auth/authService';
 import { useUserService } from '../../src/services/user/hook';
 
-export default function ProfilePage() {
+function ProfilePage(props) {
   const data = useUserService.getProfilePage();
 
   console.log(data);
+  console.log('props', props);
 
   return (
     <div>
@@ -21,6 +23,17 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+export default websitePageHOC(ProfilePage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Profile',
+    },
+    footerProps: {
+      display: false,
+    },
+  },
+});
 
 export async function getServerSideProps(context) {
   const auth = authService(context);

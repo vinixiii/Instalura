@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -18,7 +19,9 @@ export default function WebsitePageWrapper({
   seoProps,
   pageBoxProps,
   menuProps,
+  footerProps,
   messages,
+  user,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,11 +40,11 @@ export default function WebsitePageWrapper({
         </Modal>
 
         {menuProps.display && (
-          <Menu onRegisterClick={() => setIsModalOpen(true)} />
+          <Menu onRegisterClick={() => setIsModalOpen(true)} user={user} />
         )}
 
         {children}
-        <Footer />
+        {footerProps.display && <Footer />}
       </Box>
     </WebsitePageWrapperContext.Provider>
   );
@@ -53,7 +56,11 @@ WebsitePageWrapper.defaultProps = {
   menuProps: {
     display: true,
   },
+  footerProps: {
+    display: true,
+  },
   messages: {},
+  user: {},
 };
 
 WebsitePageWrapper.propTypes = {
@@ -63,12 +70,15 @@ WebsitePageWrapper.propTypes = {
   menuProps: PropTypes.shape({
     display: PropTypes.bool,
   }),
+  footerProps: PropTypes.shape({
+    display: PropTypes.bool,
+  }),
   pageBoxProps: PropTypes.shape({
     backgroundImage: PropTypes.string,
     backgroundRepeat: PropTypes.string,
     backgroundPosition: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   messages: PropTypes.object,
+  user: PropTypes.object,
 };

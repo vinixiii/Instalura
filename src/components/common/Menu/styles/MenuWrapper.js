@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable operator-linebreak */
 /* eslint-disable indent */
 import styled, { css } from 'styled-components';
 import { breakpointsMediaQuerie } from '../../../../theme/utils/breakpointsMediaQuerie';
@@ -9,18 +11,17 @@ export const MenuWrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 18px;
-  padding-left: 28px;
-  padding-right: 28px;
+  /* margin-top: 18px; */
+  padding: 28px;
 
   ${breakpointsMediaQuerie({
     md: css`
       justify-content: flex-start;
-      margin-top: 32px;
+      /* margin-top: 32px; */
       margin-left: auto;
       margin-right: auto;
       width: 100%;
-      padding: 0 16px;
+      padding: 28px 16px;
       max-width: 768px;
     `,
     lg: css`
@@ -74,8 +75,15 @@ MenuWrapper.Central = styled.ul`
       margin: 0;
       padding-top: 0;
       padding-bottom: 0;
+
+      ${({ isLogged }) =>
+        isLogged &&
+        css`
+          margin-left: auto;
+        `}
     `,
   })}
+
   a {
     text-align: center;
     display: block;
@@ -104,6 +112,7 @@ MenuWrapper.RightSide = styled.div`
   padding: 0;
   margin: 0;
   display: flex;
+  align-items: center;
   flex: 1;
   order: 2;
   justify-content: flex-end;
@@ -112,4 +121,17 @@ MenuWrapper.RightSide = styled.div`
       order: initial;
     `,
   })}
+
+  img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+  }
+
+  ${({ isLogged }) =>
+    isLogged &&
+    css`
+      flex: unset;
+    `}
 `;

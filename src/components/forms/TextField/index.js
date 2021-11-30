@@ -8,6 +8,26 @@ import Text from '../../foundation/Text';
 
 const InputWrapper = styled.div`
   margin-bottom: 17px;
+
+  ${({ isSearchInput }) =>
+    isSearchInput &&
+    css`
+      margin-bottom: unset;
+      border: 1px solid ${({ theme }) => theme.colors.tertiary.light.color};
+      border-radius: ${({ theme }) => theme.borderRadius};
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin-left: 16px;
+      }
+
+      input {
+        border: none;
+      }
+    `}
 `;
 
 const Input = styled(Text)`
@@ -40,13 +60,15 @@ export default function TextField({
   value,
   error,
   isTouched,
+  isSearchInput,
   ...props
 }) {
   const hasError = Boolean(error);
   const isFieldInvalid = hasError && isTouched;
 
   return (
-    <InputWrapper>
+    <InputWrapper isSearchInput={isSearchInput}>
+      {isSearchInput && <img src="/images/search.svg" alt="Ícone de lupa" />}
       <Input
         type="text"
         placeholder={placeholder}
@@ -70,6 +92,7 @@ export default function TextField({
 TextField.defaultProps = {
   error: '',
   isTouched: false,
+  isSearchInput: false,
 };
 
 TextField.propTypes = {
@@ -79,4 +102,5 @@ TextField.propTypes = {
   value: PropTypes.string.isRequired,
   error: PropTypes.string,
   isTouched: PropTypes.bool,
+  isSearchInput: PropTypes.bool,
 };
