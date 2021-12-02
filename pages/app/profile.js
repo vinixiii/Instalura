@@ -1,12 +1,19 @@
 import React from 'react';
 import { authService } from '../../src/services/auth/authService';
-import { userService } from '../../src/services/user/userService';
+import { useUserService } from '../../src/services/user/hook';
 
-export default function ProfilePage(props) {
+export default function ProfilePage() {
+  const data = useUserService.getProfilePage();
+
+  console.log(data);
+
   return (
     <div>
-      <pre>{JSON.stringify(props, null, 4)}</pre>
+      {/* <pre>{JSON.stringify(props, null, 4)}</pre> */}
       Página de Profile!
+      {data.loading && 'Loading'}
+      {!data.loading && data.data && 'Carregou com sucesso!'}
+      {!data.loading && data.error}
       <img
         src="https://media.giphy.com/media/bn0zlGb4LOyo8/giphy.gif"
         alt="Nicolas Cage dando uma piscada"
@@ -21,12 +28,12 @@ export async function getServerSideProps(context) {
 
   if (hasActiveSession) {
     const session = await auth.getSession();
-    const profilePage = await userService.getProfilePage(context);
+    // const profilePage = await userService.getProfilePage(context);
 
     return {
       props: {
         user: session,
-        posts: profilePage.posts,
+        // posts: profilePage.posts,
       }, // will be passed to the page component as props
     };
   }
